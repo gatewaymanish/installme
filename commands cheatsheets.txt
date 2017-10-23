@@ -1,0 +1,29 @@
+Virtual Environment (virtualenv)
+------------------------------------
+virtualenv <directory>	// will create a seperate virtual environment of python
+/Script/activate	//inside created virtual environment will activate that environment
+deactivate	//will deactivate particular environment
+source bin/activate	//to activate virenv in linux os
+
+
+
+Python + Django
+------------------------------------
+python manage.py runserver	//will run the server
+ctrl+c	//will stop the server
+python manage.py migrate	//will execute db changes made in project
+django-admin startproject <project name>	//will create a new django project
+django-admin startapp <application name> 	// will create a new webapp
+python manage.py createsuperuser	//will configure superuser(admin)
+python manage.py makemigrations <appname> //will migrate changes to db for the specified app
+python manage.py sqlmigrate <appname> 0001  //will show the sql queries done for that app
+python manage.py shell  //will invoke the python shell
+pip install -r requirements.txt     //will install all the required packages at once
+
+
+haystack
+-------------------------------------
+clear_index
+haystack_info
+rebuild_index
+update_index

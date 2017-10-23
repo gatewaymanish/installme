@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <title>Easy Install</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <!-- Custom css -->
+    <link rel="stylesheet" href='{% static "css/base.css" %}'/>
+
+
+
+
+</head>
+
+
+<body>
+<!--navigation bar left section-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://installme.herokuapp.com/">New Install</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/createSetup">Create Setup</a></li>
+          <li><a href="/feedback">Feedback</a></li>
+        </ul>
+        <!--navigation bar search componenet-->
+        <form method="GET" ACTION="" class="navbar-form navbar-left" style="padding-left:15em">
+          <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search" value="{{ request.GET.q }}">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+          <!--navigation bar right section-->
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>{{user}}</strong><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Account</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+            {% else %}
+            <li>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+              </li>
+              {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+<!--<footer class="footer">-->
+      <!--<div class="container">-->
+        <!--<span class="text-muted">Place sticky footer content here.</span>-->
+          <!--<div class="col-md-12 text-right"><h5>©Company 2016</h5></div>-->
+      <!--</div>-->
+    <!--</footer>-->
+
+</body>
+</html>
+

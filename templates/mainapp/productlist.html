@@ -1,0 +1,45 @@
+
+
+
+{% load staticfiles %}
+
+
+<!--<div style="padding:3em 0 0 3em;" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">-->
+    <!--<h3>Products</h3>-->
+    <!--<table style="margin:3em 0 0 0;"><tr>-->
+        <!--{% for obj in prodlist %}-->
+        <!--<td>-->
+
+            <!--<div style="margin:0 2em 0 0;">-->
+                <!--<a href="/setup/{{obj.id}}">-->
+                <!--<center>-->
+                        <!--<img src="{% static obj.refImage %}" alt="image"   style="border-radius:2%;height:5em"/>-->
+                    <!--<div style="margin:1em 0 0 0;width:8em;">-->
+                        <!--<span class="btn btn-default" >{{ obj.productName }}</span>-->
+                    <!--</div>-->
+                <!--</center>-->
+                <!--</a>-->
+            <!--</div>-->
+
+        <!--</td>-->
+        <!--{% endfor %}-->
+        <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+
+
+
+<div  style="margin:2em 0 0 2em;" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <h4>Products</h4>
+    <div class="container">
+        {% for obj in prodlist %}
+        <apan>
+                <a href="/setup/{{obj.id}}" >
+                        <img src="{% static obj.refImage %}" alt="image" title="{{obj.productName}}"
+                                     style="border-radius:2%;width:5em; margin:1.5em;"/>
+                    <!--<span class="btn btn-default" >{{ obj.productName }}</span>-->
+                </a>
+        </apan>
+        {% endfor %}
+    </div>
+</div>

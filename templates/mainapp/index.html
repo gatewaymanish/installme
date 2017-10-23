@@ -1,0 +1,54 @@
+{% include 'base.html' %}
+{% block landing %}
+
+
+<!--navigation bar search componenet-->
+<div class="container" style="padding:5em 0 0 0;" xmlns="http://www.w3.org/1999/html">
+	<div class="row">
+        <div class="col-sm-9 col-sm-offset-1">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div style="padding:4em 0 0 1em;">
+    <a href="/"><h4>Category</h4></a>
+</div>
+
+<div id="category" style="padding:0 0 0 2em;">
+        {% for obj in categories %}
+        <!--<a href="#">-->
+            <span class="btn btn-default" rel="{{obj}}" style="margin:1.5em 1.5em 0em 0em;">{{ obj }}</span>
+        <!--</a>-->
+        {% endfor %}
+</div>
+
+
+<script>
+$(document).ready(function(){
+    $('span').click(function(){
+     var urlcategory = "productlist/"+$(this).attr('rel');
+        $.ajax({url: urlcategory, success: function(result){
+            $("#category").html(result);
+        }});
+    });
+});
+</script>
+
+{% endblock %}

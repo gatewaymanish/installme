@@ -1,0 +1,150 @@
+{% include "base.html" %}
+
+
+{% block setuppage %}
+<script xmlns="http://www.w3.org/1999/html">
+function zoomIn(event) {
+  var element = document.getElementById("overlay");
+  element.style.display = "inline-block";
+  var img = document.getElementById("imgZoom");
+  var posX = event.offsetX ? (event.offsetX) : event.pageX - img.offsetLeft;
+  var posY = event.offsetY ? (event.offsetY) : event.pageY - img.offsetTop;
+  element.style.backgroundPosition = (-posX * 4) + "px " + (-posY * 4) + "px";
+}
+function zoomOut() {
+  var element = document.getElementById("overlay");
+  element.style.display = "none";
+}
+</script>
+
+
+<div style="margin:3em 0 0 0;">
+<!--left steps bookmark and right related stuff-->
+<div style="margin:0em 1em 0 0em; position:fixed; width:16em;height:100%;background:#fafcd4;border-radius:0.5em;">
+    <div style="margin:2em 1em 0 1em;">
+        <center><h4 class="">STEPS</h4></center><br>
+    {% for obj in step %}
+        <!--<table><tr>-->
+            <!--<td>-->
+            <!--<div class="col-sm-12" style="">-->
+                <!--<div class="checkbox">-->
+                    <!--<label style="font-size: 2.5em">-->
+                        <!--<input type="checkbox" value="" checked>-->
+                        <!--<span class="cr"><i class="cr-icon fa fa-check"></i></span>-->
+                    <!--</label>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</td> <td>-->
+            <a href="#step{{obj.stepNum}}" style="color:brown" class=""><font size="2.0"><b>{{obj.stepNum}}.</b>&nbsp;{{ obj.stepTitle }}</font></a><br><br>
+        <!--</td>-->
+        <!--</tr></table>-->
+
+    {% endfor %}
+    </div>
+</div>
+<div style="margin:20em 1em 0 79em; position:absolute; width:17em;">
+    <h4>Related Setups</h4>
+    <hr>
+    {% for obj in prodlist %}
+        <a href="/setup/{{obj.id}}" class="" style="color:brown;">{{obj.productName}} {{obj.version}} on {{obj.platformType}}</a><br><br>
+    {% endfor %}
+</div>
+
+
+
+<!--headers and steps-->
+<div style="width:60em; margin:2em 0 0 18em; position:absolute;" > <!-- division of setup header and steps altogether-->
+    <div style=""> <!-- setup header block-->
+    {% for obj in qsetsetup  %}
+        {% load static %}
+        <table>
+            <tr>
+                 <td style="padding:0 2em 0 2em;">  <!-- header image -->
+                    <div class="setup_image"  >
+                        <img src="{% static obj.refImage %}" alt="image" width="150px" height="150px" style="border-radius: 2%;"/>
+                    </div>
+                </td>
+
+                <td> <!-- header data -->
+                    <h4>{{ obj.category }}:&nbsp;<span style="color:#276982;">{{ obj.productName }}&nbsp;{{ obj.version }}</span></h4>
+                    <h5>Prerequisite:&nbsp;<span style="color:#276982;">{{ obj.minimumRequirement }}</span></h5>
+                    <h5>Precautions:&nbsp;<span style="color:#276982;">{{ obj.precautions }}</span></h5>
+                    <h5>Expertise Needed: <span style="color:#276982;">{{ obj.expertiseLevel }} </span></h5>
+                    <p><font size="1.5"> Last Updated:&nbsp;<span style="color:#276982;">{{ obj.updated.date }}</span>&nbsp;&nbsp;
+                        Updated:&nbsp;<span style="color:#276982;">{{obj.numOfUpdates}}&nbsp;times</span>&nbsp;&nbsp;
+                        Time Required:&nbsp;<span style="color:#276982;">{{ obj.approxTotalTimeReqd }}&nbsp;mins approx </span>&nbsp;&nbsp;
+                        Viewed:&nbsp;<span style="color:#276982;">{{obj.numOfViews}}&nbsp;times</span>&nbsp;&nbsp;
+                        Number of Steps: <span style="color:#276982;">{{ step|length }} </span></font>
+                        </font></p>
+                    {% if obj.officialSite %}<a href="{{obj.officialSite}}" target="_blank"><span style="color:#276982;background:#eaeff9">Official Site</span></a>&nbsp;{% endif %}
+                    {% if obj.downloadLink %}<a href="{{obj.downloadLink}}" target="_blank"><span style="color:#276982;background:#eaeff9">Download</span></a>&nbsp;{% endif %}
+                    {% if obj.wikipage %}<a href="{{obj.wikipage}}" target="_blank"><span style="color:#276982;background:#eaeff9">Wikipedia</span></a>&nbsp;{% endif %}
+                    {% if obj.githubRepo %}<a href="{{obj.githubRepo}}" target="_blank"><span style="color:#276982;background:#eaeff9">Github</span></a>&nbsp;{% endif %}
+                    {% if obj.stackoverflow %}<a href="{{obj.stackoverflow}}" target="_blank"><span style="color:#276982;background:#eaeff9">Stack Overflow</span></a>&nbsp;{% endif %}
+                    {% if obj.youtubeChannel %}<a href="{{obj.youtubeChannel}}" target="_blank"><span style="color:#276982;background:#eaeff9">Youtube</span></a>&nbsp;{% endif %}
+
+                </td>
+
+
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+    <hr>
+
+    <div style="margin:0 0 0 3em;">         <!--step block-->
+    {% for obj in step %}
+            <table>
+                <!--<tr style="background:#fafcd4;" >-->
+                    <!--<td>-->
+                        <!--<div class="col-sm-12" style="">-->
+                        <!--<div class="checkbox">-->
+                            <!--<label style="font-size: 2.5em">-->
+                                <!--<input type="checkbox" value="" checked>-->
+                                <!--<span class="cr"><i class="cr-icon fa fa-check"></i></span>-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <td style="width:50em;height:12em" id="step{{obj.stepNum}}">
+                            <h4 style="color:#276982;"> Step:&nbsp;{{obj.stepNum}}.&nbsp;{{ obj.stepTitle }}</h4>
+                            <p> {{obj.stepDesc}}</p>
+                        {% if obj.codeSnip %}
+                        <i>{{ obj.codeSnip }}</i>
+
+                        {% endif %}
+
+                        <p><font size="1"> Time Required:&nbsp;<span style="color:#276982;">{{obj.stepTimeReqd}}&nbsp;minutes </span>&nbsp;&nbsp;
+                            <!--Updated On:&nbsp;<span style="color:#276982;">{{obj.updated}} </span>&nbsp;&nbsp;-->
+                            <!--Time Required:&nbsp;<span style="color:#276982b;">{{obj.stepTimeReqd}}&nbsp;minutes</span>-->
+                        </font></p>
+                        {% if obj.stepImage %}
+                        <div class="step_image" style="">
+                            <img id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"
+                                src="/static/img/{{obj.stepImage}}" alt="image" width="200px" />
+                            <div id="overlay" onmousemove="zoomIn(event)"></div>
+                        </div>
+                        {% endif %}
+                    </td>
+
+                    <!--<td style="">  &lt;!&ndash; step image &ndash;&gt;-->
+                        <!--<div class="step_image" style="">-->
+                            <!--<img id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"-->
+                                <!--src="/static/img/{{obj.stepImage}}" alt="image" width="200px" />-->
+                            <!--<div id="overlay" onmousemove="zoomIn(event)"></div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+
+                </tr>
+                <br>
+            </table>
+    {% endfor %}
+    </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

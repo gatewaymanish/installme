@@ -1,0 +1,29 @@
+###TASK###                                                                                       ###STATUS###
+=============================================================================================================
+Functional setup page                                                                              working
+Search function
+User/login/logout/profile/account
+Landing page with list of categories and product name
+Contact Us page and links
+Layout will be more like of stackoverflow and wikipedia
+user's comments on steps and on full setup guide like stackoverflow
+sticky note on steps
+user can update steps with rankings
+user can create a setup guide
+gif instead of image,
+youtube channel and embedded videos setup guide
+checkbox on steps related to user table
+time remaining timer with each steps and will learn with every user's installations
+social links for sharing
+chatbot for naive user to help step by step with user prompts
+Brief list of all steps in header
+logo for topleft
+https://pypi.python.org/pypi/django-active-users/0.1
+new website name
+deploy on azure
+
+
+
+
+
+
