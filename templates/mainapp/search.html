@@ -1,0 +1,21 @@
+{% include 'base.html' %}
+
+<div style="margin:2em 1em 0 0em; position:fixed; width:16em;height:100%;background:#fafcd4;border-radius:0.5em;">
+   <center><h4 STYLE="margin:2em 0 0 0;color:grey;">Software Category</h4></center><br>
+    <div style="margin:0em 1em 0 2em;" id="category">
+
+    {% for obj in categories %}
+
+            <a href="productlist/{{obj}}" style="color:brown" class=""><font size="2.0"><b>{{obj.stepNum}}.</b>&nbsp;{{ obj }}</font></a><br>
+        <!--<span class="" rel="{{obj}}" style="margin:1.5em 1.5em 0em 0em; color:brown">{{ obj }}</span><br>-->
+    {% endfor %}
+    </div>
+</div>
+
+
+<div style="margin:8em 0 0 20em; position:absolute;">
+{% for obj in result %}
+    <a href="/setup/{{obj.id}}"> How to install &nbsp;{{obj.productName}}&nbsp;{{obj.version}}&nbsp; on &nbsp;{{obj.platformType}}</a><br>
+    <font size="1.5"><p>Created by: some user &nbsp; Time Required: some times</p></font><br>
+{% endfor %}
+</div>

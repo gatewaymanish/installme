@@ -34,8 +34,13 @@ class SetupTemplate(models.Model):
     def __unicode__(self):
         return str(self.category) + ": " + str(self.productName) + " " + str(self.version) + " " + str(self.platformType)
 
+    # def __getitem__(self, item):
+    #     return self.get_latest_by(item)
+
     class Meta:
+
         ordering = ('productName',)
+
 
 
 # The steps will me many for single SetupTemplate

@@ -1,23 +1,26 @@
 {% include 'base.html' %}
-{% block landing %}
 
 
-<!--navigation bar search componenet-->
-<div class="container" style="padding:5em 0 0 0;" xmlns="http://www.w3.org/1999/html">
-	<div class="row">
-        <div class="col-sm-9 col-sm-offset-1">
-            <div id="imaginary_container">
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control"  placeholder="Search" >
-                    <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-	</div>
+<div style="margin:8em 0 0 20em; position:absolute;">
+{% for obj in latestsetuplist %}
+    <a href="/setup/{{obj.id}}"> How to install &nbsp;{{obj.productName}}&nbsp;{{obj.version}}&nbsp; on &nbsp;{{obj.platformType}}</a><br>
+    <font size="1.5"><p>Created by: some user &nbsp; Time Required: some times</p></font><br>
+{% endfor %}
+</div>
+
+
+
+
+<div style="margin:2em 1em 0 0em; position:fixed; width:16em;height:100%;background:#fafcd4;border-radius:0.5em;">
+   <center><h4 STYLE="margin:2em 0 0 0;color:grey;">Software Category</h4></center><br>
+    <div style="margin:0em 1em 0 2em;" id="category">
+
+    {% for obj in categories %}
+
+            <a href="productlist/{{obj}}" style="color:brown" class=""><font size="2.0"><b>{{obj.stepNum}}.</b>&nbsp;{{ obj }}</font></a><br>
+        <!--<span class="" rel="{{obj}}" style="margin:1.5em 1.5em 0em 0em; color:brown">{{ obj }}</span><br>-->
+    {% endfor %}
+    </div>
 </div>
 
 
@@ -27,28 +30,27 @@
 
 
 
-<div style="padding:4em 0 0 1em;">
-    <a href="/"><h4>Category</h4></a>
-</div>
+<!--<div style="padding:10em 0 0 1em;">-->
+    <!--<a href="/"><h4>Category</h4></a>-->
+<!--</div>-->
 
-<div id="category" style="padding:0 0 0 2em;">
-        {% for obj in categories %}
-        <!--<a href="#">-->
-            <span class="btn btn-default" rel="{{obj}}" style="margin:1.5em 1.5em 0em 0em;">{{ obj }}</span>
-        <!--</a>-->
-        {% endfor %}
-</div>
+<!--&lt;!&ndash;<div id="category" style="padding:0 0 0 2em;">&ndash;&gt;-->
+        <!--{% for obj in categories %}-->
+        <!--&lt;!&ndash;<a href="#">&ndash;&gt;-->
+            <!--<span class="btn btn-default" rel="{{obj}}" style="margin:1.5em 1.5em 0em 0em;">{{ obj }}</span>-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--{% endfor %}-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 
 
-<script>
-$(document).ready(function(){
-    $('span').click(function(){
-     var urlcategory = "productlist/"+$(this).attr('rel');
-        $.ajax({url: urlcategory, success: function(result){
-            $("#category").html(result);
-        }});
-    });
-});
-</script>
+<!--<script>-->
+<!--$(document).ready(function(){-->
+    <!--$('span').click(function(){-->
+     <!--var urlcategory = "productlist/"+$(this).attr('rel');-->
+        <!--$.ajax({url: urlcategory, success: function(result){-->
+            <!--$("#category").html(result);-->
+        <!--}});-->
+    <!--});-->
+<!--});-->
+<!--</script>-->
 
-{% endblock %}

@@ -16,7 +16,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'MainApp',
+    'MainApp'
+
+
 ]
 SITE_ID = 1  # need to add this if using django.contrib.sites in installed apps for accessing admin
 

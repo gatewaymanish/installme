@@ -19,6 +19,7 @@ function zoomOut() {
 
 
 <div style="margin:3em 0 0 0;">
+
 <!--left steps bookmark and right related stuff-->
 <div style="margin:0em 1em 0 0em; position:fixed; width:16em;height:100%;background:#fafcd4;border-radius:0.5em;">
     <div style="margin:2em 1em 0 1em;">
@@ -43,7 +44,7 @@ function zoomOut() {
     </div>
 </div>
 <div style="margin:20em 1em 0 79em; position:absolute; width:17em;">
-    <h4>Related Setups</h4>
+    <h4>Related Installations</h4>
     <hr>
     {% for obj in prodlist %}
         <a href="/setup/{{obj.id}}" class="" style="color:brown;">{{obj.productName}} {{obj.version}} on {{obj.platformType}}</a><br><br>
@@ -66,7 +67,7 @@ function zoomOut() {
                 </td>
 
                 <td> <!-- header data -->
-                    <h4>{{ obj.category }}:&nbsp;<span style="color:#276982;">{{ obj.productName }}&nbsp;{{ obj.version }}</span></h4>
+                    <h4><span style="color:#276982;">{{ obj.productName }}&nbsp;{{ obj.version }}</span></h4>
                     <h5>Prerequisite:&nbsp;<span style="color:#276982;">{{ obj.minimumRequirement }}</span></h5>
                     <h5>Precautions:&nbsp;<span style="color:#276982;">{{ obj.precautions }}</span></h5>
                     <h5>Expertise Needed: <span style="color:#276982;">{{ obj.expertiseLevel }} </span></h5>
@@ -106,35 +107,26 @@ function zoomOut() {
                         <!--</div>-->
                         <!--</div>-->
                     <!--</td>-->
+                <tr>
                     <td style="width:50em;height:12em" id="step{{obj.stepNum}}">
-                            <h4 style="color:#276982;"> Step:&nbsp;{{obj.stepNum}}.&nbsp;{{ obj.stepTitle }}</h4>
-                            <p> {{obj.stepDesc}}</p>
+                        <h4 style="color:grey;"> Step:&nbsp;{{obj.stepNum}}.&nbsp;{{ obj.stepTitle }}</h4>
+                        <p><font size="1"> Time Required:&nbsp;<span style="color:#276982;">{{obj.stepTimeReqd}}&nbsp;minutes </span>&nbsp;&nbsp;</font></p>
+                        <p> {{obj.stepDesc}}</p>
                         {% if obj.codeSnip %}
-                        <i>{{ obj.codeSnip }}</i>
-
+                            <i>{{ obj.codeSnip }}</i>
                         {% endif %}
-
-                        <p><font size="1"> Time Required:&nbsp;<span style="color:#276982;">{{obj.stepTimeReqd}}&nbsp;minutes </span>&nbsp;&nbsp;
-                            <!--Updated On:&nbsp;<span style="color:#276982;">{{obj.updated}} </span>&nbsp;&nbsp;-->
-                            <!--Time Required:&nbsp;<span style="color:#276982b;">{{obj.stepTimeReqd}}&nbsp;minutes</span>-->
-                        </font></p>
+                    </td>
+                </tr>
+                    <tr>
+                    <td>
                         {% if obj.stepImage %}
                         <div class="step_image" style="">
-                            <img id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"
-                                src="/static/img/{{obj.stepImage}}" alt="image" width="200px" />
+                            <center><img id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"
+                                         src="/static/{{obj.stepImage}}" alt="image" width="200px" /></center>
                             <div id="overlay" onmousemove="zoomIn(event)"></div>
                         </div>
                         {% endif %}
                     </td>
-
-                    <!--<td style="">  &lt;!&ndash; step image &ndash;&gt;-->
-                        <!--<div class="step_image" style="">-->
-                            <!--<img id="imgZoom" onmousemove="zoomIn(event)" onmouseout="zoomOut()"-->
-                                <!--src="/static/img/{{obj.stepImage}}" alt="image" width="200px" />-->
-                            <!--<div id="overlay" onmousemove="zoomIn(event)"></div>-->
-                        <!--</div>-->
-                    <!--</td>-->
-
                 </tr>
                 <br>
             </table>
